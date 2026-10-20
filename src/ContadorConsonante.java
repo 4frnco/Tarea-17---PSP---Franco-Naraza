@@ -36,6 +36,15 @@ public class ContadorConsonante {
             hilos[i].start();
         }
 
+        // esperamos a que terminen todos los hilos
+        for (int i = 0; i < hilos.length; i++) {
+            try {
+                hilos[i].join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         teclado.close();
     }
 }

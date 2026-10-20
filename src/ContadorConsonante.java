@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-// pide los datos y organiza los contadores
+// pide los datos y organiza los hilos
 public class ContadorConsonante {
 
     public static void main(String[] args) {
@@ -23,12 +23,14 @@ public class ContadorConsonante {
         // repetimos el texto 2000 veces
         String textoRepetido = texto.repeat(2000);
 
-        // creamos y ejecutamos los contadores
         Contador[] contadores = new Contador[5];
+        Thread[] hilos = new Thread[5];
 
+        // creamos y arrancamos los hilos
         for (int i = 0; i < consonantes.length; i++) {
             contadores[i] = new Contador(consonantes[i], textoRepetido);
-            contadores[i].run();
+            hilos[i] = new Thread(contadores[i]);
+            hilos[i].start();
         }
 
         teclado.close();

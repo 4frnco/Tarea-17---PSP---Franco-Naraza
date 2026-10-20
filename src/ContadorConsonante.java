@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-// pide los datos y repite el texto
+// pide los datos y organiza los contadores
 public class ContadorConsonante {
 
     public static void main(String[] args) {
@@ -23,8 +23,13 @@ public class ContadorConsonante {
         // repetimos el texto 2000 veces
         String textoRepetido = texto.repeat(2000);
 
-        System.out.println("texto repetido correctamente");
-        System.out.println("longitud del texto: " + textoRepetido.length());
+        // creamos y ejecutamos los contadores
+        Contador[] contadores = new Contador[5];
+
+        for (int i = 0; i < consonantes.length; i++) {
+            contadores[i] = new Contador(consonantes[i], textoRepetido);
+            contadores[i].run();
+        }
 
         teclado.close();
     }

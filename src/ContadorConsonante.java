@@ -23,12 +23,15 @@ public class ContadorConsonante {
         // repetimos el texto 2000 veces
         String textoRepetido = texto.repeat(2000);
 
+        int[] totalCompartido = {0};
         Contador[] contadores = new Contador[5];
         Thread[] hilos = new Thread[5];
 
         // creamos y arrancamos los hilos
         for (int i = 0; i < consonantes.length; i++) {
-            contadores[i] = new Contador(consonantes[i], textoRepetido);
+            contadores[i] = new Contador(
+                    consonantes[i], textoRepetido, totalCompartido);
+
             hilos[i] = new Thread(contadores[i]);
             hilos[i].start();
         }

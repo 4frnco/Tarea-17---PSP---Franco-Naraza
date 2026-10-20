@@ -45,6 +45,9 @@ public class ContadorConsonante {
             }
         }
 
+        // mostramos el total compartido
+        System.out.println("total compartido: " + totalCompartido[0]);
+
         teclado.close();
     }
 }

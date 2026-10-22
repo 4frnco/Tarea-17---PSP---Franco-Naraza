@@ -5,11 +5,14 @@ public class Contador implements Runnable {
     private String texto;
     private int apariciones;
     private int[] totalCompartido;
+    private Object bloqueo;
 
-    public Contador(char consonante, String texto, int[] totalCompartido) {
+    public Contador(char consonante, String texto,
+                    int[] totalCompartido, Object bloqueo) {
         this.consonante = consonante;
         this.texto = texto;
         this.totalCompartido = totalCompartido;
+        this.bloqueo = bloqueo;
         this.apariciones = 0;
     }
 
@@ -23,8 +26,10 @@ public class Contador implements Runnable {
             }
         }
 
-        // sumamos las apariciones al total compartido
-        totalCompartido[0] += apariciones;
+        // sumamos las apariciones al total de forma sincronizada
+        synchronized (bloqueo) {
+            totalCompartido[0] += apariciones;
+        }
 
         System.out.println(consonante + ": " + apariciones);
     }
